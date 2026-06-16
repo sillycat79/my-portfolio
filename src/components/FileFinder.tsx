@@ -82,7 +82,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('root');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'root' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -97,7 +97,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('projects');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'projects' || ['beginner', 'intermediate', 'advanced'].includes(currentDir)
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]'
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -112,7 +112,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('about');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'about' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -127,7 +127,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('experience');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'experience' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -142,7 +142,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('education');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'education' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -157,7 +157,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('leadership');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'leadership' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
@@ -172,7 +172,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setCurrentDir('socials');
             setSelectedProjectId(null);
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
             currentDir === 'socials' 
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]' 
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'

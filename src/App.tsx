@@ -29,6 +29,7 @@ export default function App() {
   const [activeId, setActiveId] = useState<string>('read_me');
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isCompactViewport, setIsCompactViewport] = useState(false);
 
   const lastClickRef = useRef<{ [key: string]: number }>({});
   const handleDoubleTap = (id: string, action: () => void) => {
@@ -132,12 +133,24 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncViewport = () => {
+      setIsCompactViewport(window.innerWidth < 900);
+    };
+
+    syncViewport();
+    window.addEventListener('resize', syncViewport);
+
+    return () => window.removeEventListener('resize', syncViewport);
+  }, []);
+
   // Set initial desktop widths responsively based on monitor width on startup
   useEffect(() => {
     if (bootState === 'desktop') {
       if (typeof window !== 'undefined') {
-        const isMobile = window.innerWidth < 768;
-        if (isMobile) {
+        if (isCompactViewport) {
           setWindows((prev) =>
             prev.map((w) => ({
               ...w,
@@ -149,14 +162,21 @@ export default function App() {
         }
       }
     }
-  }, [bootState]);
+  }, [bootState, isCompactViewport]);
 
   const handleOpenWindow = (id: string, customMeta?: any) => {
     const nextZ = Math.max(...windows.map((w) => w.zIndex), 0) + 1;
     setWindows((prev) =>
       prev.map((w) => {
         if (w.id === id) {
-          return { ...w, isOpen: true, isMinimized: false, zIndex: nextZ, meta: customMeta || w.meta };
+          return {
+            ...w,
+            isOpen: true,
+            isMinimized: false,
+            isMaximized: isCompactViewport ? true : w.isMaximized,
+            zIndex: nextZ,
+            meta: customMeta || w.meta,
+          };
         }
         return w;
       })
@@ -253,7 +273,7 @@ export default function App() {
             <div className="absolute bottom-12 left-0 w-full h-16 bg-[#22c55e] rounded-t-[100%] scale-x-110 translate-y-6 z-0 pointer-events-none" style={{ transformOrigin: 'right' }} />
 
             {/* Desktop Shortcuts Workspace Grid */}
-            <div className="flex-1 p-6 grid grid-flow-col auto-cols-[82px] grid-rows-[repeat(auto-fill,88px)] gap-y-4 gap-x-2 content-start justify-items-center relative z-10">
+            <div className="flex-1 p-4 md:p-6 grid grid-cols-[repeat(auto-fill,minmax(78px,1fr))] lg:grid-flow-col lg:auto-cols-[82px] lg:grid-rows-[repeat(auto-fill,88px)] gap-y-4 gap-x-2 content-start justify-items-center relative z-10 overflow-y-auto">
               {/* Shortcut: Finder */}
               <button
                 id="sh-finder"
@@ -369,7 +389,7 @@ export default function App() {
 
                     <p className="mb-2"><strong>hi, i'm reb :)</strong></p>
                     <p className="mb-3">
-                      this is my portfolio, built like a little old-school desktop because a plain scroll page felt too boring. you can drag the windows around, open folders, and click through the pieces i'm working on.
+                      this is my portfolio, built like a little old-school desktop because a plain scroll page felt too boring. you can drag the windows around, open folders, and click through the pieces i'm working on. on phones and tablets, windows open full-screen so everything is easier to read.
                     </p>
 
                     <p className="mb-2"><strong>what to open:</strong></p>
