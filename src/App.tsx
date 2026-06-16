@@ -8,6 +8,7 @@ import PaintApp from './components/PaintApp';
 import MusicApp from './components/MusicApp';
 import CatFlapApp from './components/CatFlapApp';
 import { AppWindow, Project } from './types';
+import { playSound } from './soundEffects';
 
 const MinecraftCloud = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <div className={`pointer-events-none select-none ${className || ''}`} style={style}>
@@ -165,6 +166,7 @@ export default function App() {
   }, [bootState, isCompactViewport]);
 
   const handleOpenWindow = (id: string, customMeta?: any) => {
+    playSound('open');
     const nextZ = Math.max(...windows.map((w) => w.zIndex), 0) + 1;
     setWindows((prev) =>
       prev.map((w) => {
@@ -186,6 +188,7 @@ export default function App() {
   };
 
   const handleCloseWindow = (id: string) => {
+    playSound('close');
     setWindows((prev) =>
       prev.map((w) => {
         if (w.id === id) {
@@ -197,6 +200,7 @@ export default function App() {
   };
 
   const handleMinimizeWindow = (id: string) => {
+    playSound('click');
     setWindows((prev) =>
       prev.map((w) => {
         if (w.id === id) {
@@ -208,6 +212,7 @@ export default function App() {
   };
 
   const handleMaximizeWindow = (id: string) => {
+    playSound('click');
     setWindows((prev) =>
       prev.map((w) => {
         if (w.id === id) {
@@ -523,7 +528,10 @@ export default function App() {
                 {/* START MENU TOGGLE BUTTON */}
                 <button
                   id="start-button"
-                  onClick={() => setStartMenuOpen(!startMenuOpen)}
+                  onClick={() => {
+                    playSound('menu');
+                    setStartMenuOpen(!startMenuOpen);
+                  }}
                   className={`flex items-center gap-1.5 px-3 h-8 font-bold font-press-start text-[9px] rounded-none bg-[#fff200] border-2 border-black shadow-[2px_2px_0_0_#000000] text-black ${
                     startMenuOpen ? 'translate-x-[2px] translate-y-[2px] shadow-none bg-[#ffe100]' : ''
                   }`}

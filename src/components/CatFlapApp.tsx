@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { playSound } from '../soundEffects';
 
 type GameState = 'ready' | 'playing' | 'gameover';
 
@@ -55,6 +56,7 @@ export default function CatFlapApp() {
   }, []);
 
   const finishGame = useCallback(() => {
+    playSound('error');
     const nextBest = Math.max(bestScore, scoreRef.current);
     localStorage.setItem('cat-flap-best', String(nextBest));
     setBestScore(nextBest);
@@ -62,6 +64,7 @@ export default function CatFlapApp() {
   }, [bestScore]);
 
   const flap = useCallback(() => {
+    playSound('flap');
     if (stateRef.current === 'gameover') {
       resetGame();
       syncState('playing');

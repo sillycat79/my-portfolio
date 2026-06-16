@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, Folder, FileText, ChevronRight, CornerDownRight, ExternalLink } from 'lucide-react';
 import { PROJECTS, WORK_EXPERIENCE, EDUCATION, LEADERSHIP_EXPERIENCE, ABOUT_ME_BIO, RPG_STATS } from '../data';
 import { Project } from '../types';
+import { playSound } from '../soundEffects';
 
 interface FileFinderProps {
   onOpenProjectDetails: (project: Project) => void;
@@ -18,6 +19,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
   const lastClickRef = React.useRef<{ [key: string]: number }>({});
 
   const handleDoubleTap = (id: string, action: () => void) => {
+    playSound('click');
     const now = Date.now();
     const lastClick = lastClickRef.current[id] || 0;
     if (now - lastClick < 300) {
@@ -60,6 +62,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
 
   // Navigate back to a specific level
   const navigateUp = () => {
+    playSound('click');
     if (currentDir === 'beginner' || currentDir === 'intermediate' || currentDir === 'advanced') {
       setCurrentDir('projects');
       setSelectedProjectId(null);
@@ -79,6 +82,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-desktop"
           onClick={() => {
+            playSound('click');
             setCurrentDir('root');
             setSelectedProjectId(null);
           }}
@@ -94,6 +98,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-projects"
           onClick={() => {
+            playSound('click');
             setCurrentDir('projects');
             setSelectedProjectId(null);
           }}
@@ -109,6 +114,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-about"
           onClick={() => {
+            playSound('click');
             setCurrentDir('about');
             setSelectedProjectId(null);
           }}
@@ -124,6 +130,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-experience"
           onClick={() => {
+            playSound('click');
             setCurrentDir('experience');
             setSelectedProjectId(null);
           }}
@@ -139,6 +146,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-school"
           onClick={() => {
+            playSound('click');
             setCurrentDir('education');
             setSelectedProjectId(null);
           }}
@@ -154,6 +162,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-leadership"
           onClick={() => {
+            playSound('click');
             setCurrentDir('leadership');
             setSelectedProjectId(null);
           }}
@@ -169,6 +178,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         <button
           id="sidebar-links"
           onClick={() => {
+            playSound('click');
             setCurrentDir('socials');
             setSelectedProjectId(null);
           }}
@@ -203,6 +213,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                 <span
                   className={`cursor-pointer hover:underline ${idx === arr.length - 1 ? 'font-bold text-[#ff4d4d]' : 'text-gray-700'}`}
                   onClick={() => {
+                    playSound('click');
                     if (crumb === 'Projects') {
                       setCurrentDir('projects');
                       setSelectedProjectId(null);
@@ -391,7 +402,10 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                     <button
                       key={project.id}
                       id={`project-item-${project.id}`}
-                      onClick={() => setSelectedProjectId(project.id)}
+                      onClick={() => {
+                        playSound('click');
+                        setSelectedProjectId(project.id);
+                      }}
                       className={`text-left p-2 rounded-sm border ${
                         selectedProjectId === project.id
                           ? 'bg-[#000080] text-white border-transparent font-bold'
@@ -453,7 +467,10 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
 
                       <button
                         id={`btn-full-details-${selectedProject.id}`}
-                        onClick={() => onOpenProjectDetails(selectedProject)}
+                        onClick={() => {
+                          playSound('open');
+                          onOpenProjectDetails(selectedProject);
+                        }}
                         className="retro-button mt-2 py-1.5 text-center font-bold text-[#000080] text-[10px] w-full"
                       >
                         OPEN FULL VIEW
