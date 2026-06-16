@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-press-start: "Press Start 2P", monospace;
+  --font-vt323: "VT323", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Custom retro styling */
+@layer utilities {
+  .pixel-corners {
+    clip-path: polygon(
+      0px 4px, 4px 4px, 4px 0px, calc(100% - 4px) 0px, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0px calc(100% - 4px)
+    );
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #1a1a2e;
+  color: #000000;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Scanline effect for ultimate retro feeling */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 55%, rgba(0, 0, 0, 0.035) 55%), linear-gradient(90deg, rgba(255, 0, 0, 0.012), rgba(0, 255, 0, 0.006), rgba(0, 0, 255, 0.012));
+  z-index: 50;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Flicker effect */
+@keyframes crt-flicker {
+  0% { opacity: 0.995; }
+  25% { opacity: 0.99; }
+  50% { opacity: 0.985; }
+  75% { opacity: 0.99; }
+  100% { opacity: 0.995; }
+}
+.crt-screen {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* Custom Scrollbar for Retro Windows */
+.retro-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #dfdfdf;
+}
+.retro-scroll::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+.retro-scroll::-webkit-scrollbar-track {
+  background: #dfdfdf;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a;
+}
+.retro-scroll::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #555555 #555555 #ffffff;
+}
+
+/* Custom Vibrant Palette retro borders and shadows */
+.retro-outset {
+  border: 4px solid #000000;
+  box-shadow: 6px 6px 0 0 #000000;
+  background-color: #c3c3c3;
+}
+
+.retro-inset {
+  border: 4px solid #000000;
+  background-color: #ffffff;
+}
+
+.retro-button {
+  background-color: #c3c3c3;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0 0 #000000;
+  transition: transform 0.05s, box-shadow 0.05s;
+}
+
+.retro-button:active:not(:disabled) {
+  box-shadow: 0px 0px 0 0 #000000;
+  transform: translate(2px, 2px);
+}
+
+/* Pixel graphic styles */
+.pixel-border-retro {
+  border: 4px solid #000;
+  box-shadow: 
+    0 -4px 0 -4px #000,
+    0 4px 0 -4px #000,
+    -4px 0 0 -4px #000,
+    4px 0 0 -4px #000;
+}
+
+/* Blinking animations */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* Pixel cloud movement */
+@keyframes float-cloud-left {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-200px); }
+}
+
+@keyframes float-cloud-right {
+  0% { transform: translateX(-200px); }
+  100% { transform: translateX(100vw); }
+}
+
+.cloud-anim-left {
+  animation: float-cloud-left 60s linear infinite;
+}
+
+.cloud-anim-right {
+  animation: float-cloud-right 80s linear infinite;
+}
