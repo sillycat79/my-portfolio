@@ -377,6 +377,7 @@ export default function App() {
                       <li>open <strong>my profile explorer</strong> for projects, experience, education, and contact links.</li>
                       <li>open <strong>paint 95 tool</strong> if you want to doodle on the tiny canvas.</li>
                       <li>open <strong>8-bit synth</strong> to make tiny arcade sounds.</li>
+                      <li>open <strong>cat flap</strong> to play a tiny cat game.</li>
                       <li>use the start button for quick links or to restart the intro screen.</li>
                     </ul>
                   </div>
