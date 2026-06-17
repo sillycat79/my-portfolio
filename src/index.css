@@ -26,6 +26,25 @@ body {
   user-select: none;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+:root {
+  --app-height: 100vh;
+  --taskbar-height: calc(3rem + env(safe-area-inset-bottom, 0px));
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-height: 100dvh;
+  }
+}
+
 /* Scanline effect for ultimate retro feeling */
 .scanlines {
   position: relative;
@@ -58,6 +77,8 @@ body {
 .retro-scroll {
   scrollbar-width: thin;
   scrollbar-color: #888 #dfdfdf;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 .retro-scroll::-webkit-scrollbar {
   width: 14px;
@@ -78,6 +99,10 @@ body {
   border: 4px solid #000000;
   box-shadow: 6px 6px 0 0 #000000;
   background-color: #c3c3c3;
+}
+
+.desktop-window-frame {
+  box-shadow: none;
 }
 
 .retro-inset {

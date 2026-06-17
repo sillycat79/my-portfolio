@@ -73,7 +73,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full font-mono text-xs text-black bg-gray-200 select-none">
+    <div className="flex flex-col md:flex-row h-full min-h-0 font-mono text-xs text-black bg-gray-200 select-none">
       {/* LEFT SIDEBAR - Fast Access to other Portfolio elements */}
       <div className="w-full md:w-44 bg-[#dfdfdf] border-b md:border-b-0 md:border-r-4 border-black p-2 md:p-3 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-x-visible shrink-0 select-none">
         <div className="hidden md:block font-press-start text-[8px] text-gray-700 mb-2 border-b-2 border-black pb-1.5 font-bold uppercase italic shadow-sm">
@@ -194,7 +194,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
       </div>
 
       {/* RIGHT WORKPLACE FRAME */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-h-0 min-w-0">
         {/* Navigation & Address Bar */}
         <div className="bg-[#dfdfdf] border-b-4 border-black p-2 flex items-center gap-2.5 select-none">
           <button
@@ -238,7 +238,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         </div>
 
         {/* Dynamic Folder Contents */}
-        <div className="flex-1 overflow-auto bg-white p-4">
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-white p-4 overscroll-contain retro-scroll">
           
           {/* 1. ROOT VIEW */}
           {currentDir === 'root' && (
@@ -385,7 +385,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
 
           {/* 3. PROJECT CATEGORY PAGES */}
           {['beginner', 'intermediate', 'advanced'].includes(currentDir) && (
-            <div className="flex flex-col h-full gap-4">
+            <div className="flex flex-col min-h-full gap-4">
               <div className="font-bold border-b border-gray-300 pb-1 flex items-center gap-1">
                 <span>📁</span>
                 <span>

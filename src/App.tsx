@@ -33,6 +33,7 @@ export default function App() {
   const [isCompactViewport, setIsCompactViewport] = useState(false);
 
   const lastClickRef = useRef<{ [key: string]: number }>({});
+  const windowAreaRef = useRef<HTMLDivElement>(null);
   const handleDoubleTap = (id: string, action: () => void) => {
     const now = Date.now();
     const lastClick = lastClickRef.current[id] || 0;
@@ -126,6 +127,19 @@ export default function App() {
     }
   ]);
 
+  const clampWindowPosition = (windowState: AppWindow, nextX: number, nextY: number) => {
+    const areaRect = windowAreaRef.current?.getBoundingClientRect();
+    const areaWidth = areaRect?.width ?? (typeof window !== 'undefined' ? window.innerWidth : windowState.width);
+    const areaHeight = areaRect?.height ?? (typeof window !== 'undefined' ? window.innerHeight - 52 : windowState.height);
+    const maxX = Math.max(0, areaWidth - windowState.width);
+    const maxY = Math.max(0, areaHeight - windowState.height);
+
+    return {
+      x: Math.min(Math.max(0, nextX), maxX),
+      y: Math.min(Math.max(0, nextY), maxY),
+    };
+  };
+
   // Sync System Clock
   useEffect(() => {
     const timer = setInterval(() => {
@@ -139,6 +153,12 @@ export default function App() {
 
     const syncViewport = () => {
       setIsCompactViewport(window.innerWidth < 900);
+      setWindows((prev) =>
+        prev.map((w) => {
+          if (w.isMaximized) return w;
+          return { ...w, ...clampWindowPosition(w, w.x, w.y) };
+        })
+      );
     };
 
     syncViewport();
@@ -236,6 +256,15 @@ export default function App() {
     setActiveId(id);
   };
 
+  const handleMoveWindow = (id: string, nextX: number, nextY: number) => {
+    setWindows((prev) =>
+      prev.map((w) => {
+        if (w.id !== id || w.isMaximized) return w;
+        return { ...w, ...clampWindowPosition(w, nextX, nextY) };
+      })
+    );
+  };
+
   const handleOpenProjectDetails = (project: Project) => {
     setSelectedProject(project);
     handleOpenWindow('project_details', project);
@@ -244,7 +273,7 @@ export default function App() {
   const currentActiveProject = selectedProject || (windows.find(w => w.id === 'project_details')?.meta as Project);
 
   return (
-    <div className="w-full h-screen relative select-none">
+    <div className="w-full relative select-none overflow-hidden" style={{ height: 'var(--app-height)' }}>
       <AnimatePresence mode="wait">
         {bootState === 'intro' && (
           <motion.div
@@ -276,6 +305,13 @@ export default function App() {
             {/* Backdrop hills behind windows, above desktop base height */}
             <div className="absolute bottom-12 left-0 w-full h-24 bg-[#4ade80] rounded-t-[100%] scale-x-125 translate-y-12 z-0 pointer-events-none" />
             <div className="absolute bottom-12 left-0 w-full h-16 bg-[#22c55e] rounded-t-[100%] scale-x-110 translate-y-6 z-0 pointer-events-none" style={{ transformOrigin: 'right' }} />
+
+            <div
+              className="absolute left-0 right-0 z-10 pointer-events-none select-none text-center font-mono text-[10px] sm:text-xs font-bold tracking-wide text-white/70 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]"
+              style={{ bottom: 'calc(var(--taskbar-height) + 0.75rem)' }}
+            >
+              © All rights reserved Rebecca Dagher
+            </div>
 
             {/* Desktop Shortcuts Workspace Grid */}
             <div className="flex-1 p-4 md:p-6 grid grid-cols-[repeat(auto-fill,minmax(78px,1fr))] lg:grid-flow-col lg:auto-cols-[82px] lg:grid-rows-[repeat(auto-fill,88px)] gap-y-4 gap-x-2 content-start justify-items-center relative z-10 overflow-y-auto">
@@ -346,8 +382,11 @@ export default function App() {
             </div>
 
             {/* DYNAMIC OS APP WINDOWS DISPLAY */}
-            <div className="absolute inset-0 pointer-events-none z-20">
-              <div className="relative w-full h-full pointer-events-none">
+            <div
+              className="absolute left-0 right-0 top-0 pointer-events-none z-20"
+              style={{ bottom: 'var(--taskbar-height)' }}
+            >
+              <div ref={windowAreaRef} className="relative w-full h-full pointer-events-none">
                 
                 {/* 1. Main Finder / Projects Explorer window */}
                 <RetroWindow
@@ -356,6 +395,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   <FileFinder
@@ -373,6 +413,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   <PaintApp />
@@ -385,6 +426,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   <div className="flex-1 bg-[#fffdf0] text-black font-mono p-4 text-xs overflow-y-auto leading-relaxed select-text shadow-inner">
@@ -415,6 +457,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   <MusicApp />
@@ -427,6 +470,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   <CatFlapApp />
@@ -439,6 +483,7 @@ export default function App() {
                   onMinimize={handleMinimizeWindow}
                   onMaximize={handleMaximizeWindow}
                   onFocus={handleFocusWindow}
+                  onMove={handleMoveWindow}
                   activeId={activeId}
                 >
                   {currentActiveProject ? (
@@ -522,8 +567,11 @@ export default function App() {
             </div>
 
             {/* CLASSIC 95 TASKBAR (BOTTOM FOOTER) */}
-            <div className="h-12 bg-[#dfdfdf] border-t-4 border-black w-full flex items-center justify-between px-2 select-none shrink-0 relative z-40">
-              <div className="flex items-center gap-2 h-full">
+            <div
+              className="bg-[#dfdfdf] border-t-4 border-black w-full flex items-start justify-between px-2 pt-1.5 select-none shrink-0 relative z-40"
+              style={{ height: 'var(--taskbar-height)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+            >
+              <div className="flex items-center gap-2 h-8 min-w-0">
                 
                 {/* START MENU TOGGLE BUTTON */}
                 <button
@@ -627,7 +675,7 @@ export default function App() {
                 <div className="w-0.5 bg-black h-8 mx-1.5" />
 
                 {/* Active instances tab indicators */}
-                <div className="flex gap-1.5 overflow-x-auto max-w-[200px] md:max-w-md bg-transparent whitespace-nowrap scrollbar-none">
+                <div className="flex gap-1.5 overflow-x-auto max-w-[120px] sm:max-w-[200px] md:max-w-md bg-transparent whitespace-nowrap scrollbar-none">
                   {windows
                     .filter((w) => w.isOpen)
                     .map((w) => {
@@ -663,7 +711,7 @@ export default function App() {
               </div>
 
               {/* SYSTEM TRAY CLOCK (BOTTOM RIGHT PANEL) */}
-              <div className="px-3 h-8 flex items-center gap-2 text-[10px] font-mono bg-white font-bold border-2 border-black shadow-[2px_2px_0_0_#000000] text-black">
+              <div className="px-2 sm:px-3 h-8 flex items-center gap-1.5 sm:gap-2 text-[10px] font-mono bg-white font-bold border-2 border-black shadow-[2px_2px_0_0_#000000] text-black shrink-0">
                 <Calendar size={11} className="text-black stroke-[2.5]" />
                 <span className="whitespace-nowrap tabular-nums">
                   {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true })}
