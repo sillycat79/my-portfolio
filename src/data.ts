@@ -20,7 +20,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'b1',
     name: 'Retro Desktop Portfolio',
-    difficulty: 'beginner',
+    category: 'featured',
     description: 'An interactive portfolio built as a small retro desktop instead of a standard scrolling resume page.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     details: 'Includes draggable windows, desktop shortcuts, a taskbar, a start menu, nested folder navigation, responsive window behavior, and custom retro styling. This is the main project I am actively building and refining.'
@@ -28,7 +28,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'i1',
     name: 'Paint 95 Tool',
-    difficulty: 'intermediate',
+    category: 'portfolio',
     description: 'A small browser drawing tool built into the portfolio.',
     stack: ['React', 'TypeScript', 'HTML Canvas'],
     details: 'Lets visitors draw directly in the portfolio using brush controls, a color palette, clear controls, and canvas export. It is a playful feature, but also a real part of the site.'
@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'i2',
     name: '8-Bit Synth',
-    difficulty: 'intermediate',
+    category: 'portfolio',
     description: 'A tiny chiptune-style synthesizer and sound board inside the desktop.',
     stack: ['React', 'TypeScript', 'Web Audio API'],
     details: 'Includes a tempo-controlled step sequencer, sound-effect buttons, clickable piano keys, and keyboard input for playing notes. It is another interactive feature of this portfolio.'
@@ -44,15 +44,23 @@ export const PROJECTS: Project[] = [
   {
     id: 'i3',
     name: 'Cat Flap',
-    difficulty: 'intermediate',
+    category: 'portfolio',
     description: 'A small Flappy Bird-inspired canvas game where visitors help a pixel cat dodge pipes.',
     stack: ['React', 'TypeScript', 'HTML Canvas'],
     details: 'Built as a playable mini game inside the desktop. It uses a canvas animation loop, simple gravity and flap physics, collision detection, scoring, best-score storage, and keyboard/click controls.'
   },
   {
+    id: 'h1',
+    name: 'One-Click HMI Login Automation',
+    category: 'hmi',
+    description: 'An internal automation tool built during my internship at Agri-Neo that replaces an 8-step manual login process for accessing a plant HMI with a single tap.',
+    stack: ['PowerShell', 'Java Access Bridge', 'Windows Credential Manager', 'TightVNC', 'Allen-Bradley PLC', 'Ewon / Talk2m'],
+    details: 'Operators previously had to work through a remote-access client, a VPN connection, and a VNC viewer by hand just to reach a PanelView HMI screen. I built a background watcher/launcher that detects connection state and automates the plumbing in between, while leaving the HMI\'s own login screen untouched. The trickiest part was reliably selecting and triggering the correct device connection without hardcoding credentials or relying on fragile screen-coordinate clicking — solved using Java Access Bridge to target the remote-access client\'s UI by its actual accessible name rather than pixel position, with credentials kept out of any script via Windows Credential Manager. Designed to be reusable across multiple machines through per-device configuration rather than one-off scripts per bay.'
+  },
+  {
     id: 'a1',
     name: 'Java Project',
-    difficulty: 'advanced',
+    category: 'coming-soon',
     description: 'Placeholder for a future Java project.',
     stack: ['Java'],
     details: 'Coming soon. I plan to add a stronger Java project here once I have something polished enough to show publicly.'
@@ -60,7 +68,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'a2',
     name: 'Python Project',
-    difficulty: 'advanced',
+    category: 'coming-soon',
     description: 'Placeholder for a future Python project.',
     stack: ['Python'],
     details: 'Coming soon. This could become an automation script, data project, AI experiment, or something related to cybersecurity or healthtech.'
@@ -68,7 +76,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'a3',
     name: 'Hackathon Project',
-    difficulty: 'advanced',
+    category: 'coming-soon',
     description: 'Placeholder for a future hackathon or team project.',
     stack: ['TBD'],
     details: 'Coming soon. I will replace this once I have a project from Hack Concordia or another event that I can describe clearly.'

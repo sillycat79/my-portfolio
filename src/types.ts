@@ -1,7 +1,7 @@
 export interface Project {
   id: string;
   name: string;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  category: 'featured' | 'portfolio' | 'coming-soon' | 'hmi';
   description: string;
   stack: string[];
   details: string;
@@ -59,5 +59,5 @@ export interface AppWindow {
   width: number;
   height: number;
   type: WindowType;
-  meta?: any; // To hold custom dynamic metadata, like active difficulty level or active project object
+  meta?: any; // To hold custom dynamic metadata, like active project category or active project object
 }

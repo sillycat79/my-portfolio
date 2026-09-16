@@ -11,7 +11,7 @@ interface FileFinderProps {
   onOpenCatFlap: () => void;
 }
 
-type DirectoryKey = 'root' | 'projects' | 'beginner' | 'intermediate' | 'advanced' | 'about' | 'experience' | 'leadership' | 'education' | 'socials';
+type DirectoryKey = 'root' | 'projects' | 'featured' | 'portfolio' | 'coming-soon' | 'hmi' | 'about' | 'experience' | 'leadership' | 'education' | 'socials';
 
 export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMusic, onOpenCatFlap }: FileFinderProps) {
   const [currentDir, setCurrentDir] = useState<DirectoryKey>('root');
@@ -37,12 +37,14 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
         return ['C:', 'Portfolio'];
       case 'projects':
         return ['C:', 'Portfolio', 'Projects'];
-      case 'beginner':
+      case 'featured':
         return ['C:', 'Portfolio', 'Projects', 'Featured'];
-      case 'intermediate':
+      case 'portfolio':
         return ['C:', 'Portfolio', 'Projects', 'Portfolio_Features'];
-      case 'advanced':
+      case 'coming-soon':
         return ['C:', 'Portfolio', 'Projects', 'Coming_Soon'];
+      case 'hmi':
+        return ['C:', 'Portfolio', 'Projects', 'HMI_Automation'];
       case 'about':
         return ['C:', 'Portfolio', 'About_Me'];
       case 'experience':
@@ -63,7 +65,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
   // Navigate back to a specific level
   const navigateUp = () => {
     playSound('click');
-    if (currentDir === 'beginner' || currentDir === 'intermediate' || currentDir === 'advanced') {
+    if (['featured', 'portfolio', 'coming-soon', 'hmi'].includes(currentDir)) {
       setCurrentDir('projects');
       setSelectedProjectId(null);
     } else if (currentDir !== 'root') {
@@ -103,7 +105,7 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
             setSelectedProjectId(null);
           }}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 w-max md:w-full text-left border-2 border-black font-bold text-[11px] transition-all ${
-            currentDir === 'projects' || ['beginner', 'intermediate', 'advanced'].includes(currentDir)
+            currentDir === 'projects' || ['featured', 'portfolio', 'coming-soon', 'hmi'].includes(currentDir)
               ? 'bg-[#fff200] text-black shadow-[2px_2px_0_0_#000]'
               : 'bg-white text-black hover:bg-yellow-50 shadow-none'
           }`}
@@ -220,12 +222,14 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                     } else if (crumb === 'C:' || crumb === 'Portfolio') {
                       setCurrentDir('root');
                       setSelectedProjectId(null);
-                    } else if (crumb === 'Beginner') {
-                      setCurrentDir('beginner');
-                    } else if (crumb === 'Intermediate') {
-                      setCurrentDir('intermediate');
-                    } else if (crumb === 'Advanced') {
-                      setCurrentDir('advanced');
+                    } else if (crumb === 'Featured') {
+                      setCurrentDir('featured');
+                    } else if (crumb === 'Portfolio_Features') {
+                      setCurrentDir('portfolio');
+                    } else if (crumb === 'Coming_Soon') {
+                      setCurrentDir('coming-soon');
+                    } else if (crumb === 'HMI_Automation') {
+                      setCurrentDir('hmi');
                     }
                   }}
                 >
@@ -347,11 +351,11 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
 
           {/* 2. PROJECTS DIR VIEW */}
           {currentDir === 'projects' && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 select-none">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 select-none">
               <button
-                id="proj-beginner"
-                onClick={() => handleDoubleTap('beginner', () => setCurrentDir('beginner'))}
-                onDoubleClick={() => setCurrentDir('beginner')}
+                id="proj-featured"
+                onClick={() => handleDoubleTap('featured', () => setCurrentDir('featured'))}
+                onDoubleClick={() => setCurrentDir('featured')}
                 className="flex flex-col items-center gap-2 p-4 bg-white border-2 border-black shadow-[4px_4px_0_0_#000000] hover:bg-[#fff200] hover:scale-[1.02] focus:bg-[#fff200] transition-all rounded-none group cursor-pointer text-black"
               >
                 <div className="text-4xl filter drop-shadow group-hover:scale-110 transition-transform">📁</div>
@@ -360,9 +364,9 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
               </button>
 
               <button
-                id="proj-intermediate"
-                onClick={() => handleDoubleTap('intermediate', () => setCurrentDir('intermediate'))}
-                onDoubleClick={() => setCurrentDir('intermediate')}
+                id="proj-portfolio"
+                onClick={() => handleDoubleTap('portfolio', () => setCurrentDir('portfolio'))}
+                onDoubleClick={() => setCurrentDir('portfolio')}
                 className="flex flex-col items-center gap-2 p-4 bg-white border-2 border-black shadow-[4px_4px_0_0_#000000] hover:bg-[#fff200] hover:scale-[1.02] focus:bg-[#fff200] transition-all rounded-none group cursor-pointer text-black"
               >
                 <div className="text-4xl filter drop-shadow group-hover:scale-110 transition-transform">📁</div>
@@ -371,9 +375,20 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
               </button>
 
               <button
-                id="proj-advanced"
-                onClick={() => handleDoubleTap('advanced', () => setCurrentDir('advanced'))}
-                onDoubleClick={() => setCurrentDir('advanced')}
+                id="proj-hmi"
+                onClick={() => handleDoubleTap('hmi', () => setCurrentDir('hmi'))}
+                onDoubleClick={() => setCurrentDir('hmi')}
+                className="flex flex-col items-center gap-2 p-4 bg-white border-2 border-black shadow-[4px_4px_0_0_#000000] hover:bg-[#fff200] hover:scale-[1.02] focus:bg-[#fff200] transition-all rounded-none group cursor-pointer text-black"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-110 transition-transform">📁</div>
+                <span className="font-extrabold text-[#2ea043] text-xs">HMI_AUTOMATION</span>
+                <span className="text-[9px] text-gray-500 uppercase font-bold">Industrial internship work</span>
+              </button>
+
+              <button
+                id="proj-coming-soon"
+                onClick={() => handleDoubleTap('coming-soon', () => setCurrentDir('coming-soon'))}
+                onDoubleClick={() => setCurrentDir('coming-soon')}
                 className="flex flex-col items-center gap-2 p-4 bg-white border-2 border-black shadow-[4px_4px_0_0_#000000] hover:bg-[#fff200] hover:scale-[1.02] focus:bg-[#fff200] transition-all rounded-none group cursor-pointer text-black"
               >
                 <div className="text-4xl filter drop-shadow group-hover:scale-110 transition-transform">📁</div>
@@ -384,21 +399,22 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
           )}
 
           {/* 3. PROJECT CATEGORY PAGES */}
-          {['beginner', 'intermediate', 'advanced'].includes(currentDir) && (
+          {['featured', 'portfolio', 'coming-soon', 'hmi'].includes(currentDir) && (
             <div className="flex flex-col min-h-full gap-4">
               <div className="font-bold border-b border-gray-300 pb-1 flex items-center gap-1">
                 <span>📁</span>
                 <span>
-                  {currentDir === 'beginner' && 'Featured'}
-                  {currentDir === 'intermediate' && 'Portfolio Features'}
-                  {currentDir === 'advanced' && 'Coming Soon'}
+                  {currentDir === 'featured' && 'Featured'}
+                  {currentDir === 'portfolio' && 'Portfolio Features'}
+                  {currentDir === 'coming-soon' && 'Coming Soon'}
+                  {currentDir === 'hmi' && 'HMI Automation'}
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* List of projects */}
                 <div className="md:col-span-1 border border-gray-300 bg-gray-50 p-2 flex flex-col gap-1 rounded-sm overflow-y-auto max-h-[220px] md:max-h-full">
-                  {PROJECTS.filter((p) => p.difficulty === currentDir).map((project) => (
+                  {PROJECTS.filter((p) => p.category === currentDir).map((project) => (
                     <button
                       key={project.id}
                       id={`project-item-${project.id}`}
@@ -427,9 +443,10 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                       <div className="flex items-center justify-between border-b pb-1.5 border-gray-200 flex-wrap gap-2">
                         <h4 className="font-press-start text-[10px] m-0 text-[#000080]">{selectedProject.name}</h4>
                         <span className="px-2 py-0.5 rounded-sm text-[9px] bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold">
-                          {selectedProject.difficulty === 'beginner' && 'featured'}
-                          {selectedProject.difficulty === 'intermediate' && 'portfolio feature'}
-                          {selectedProject.difficulty === 'advanced' && 'coming soon'}
+                          {selectedProject.category === 'featured' && 'featured'}
+                          {selectedProject.category === 'portfolio' && 'portfolio feature'}
+                          {selectedProject.category === 'coming-soon' && 'coming soon'}
+                          {selectedProject.category === 'hmi' && 'hmi automation'}
                         </span>
                       </div>
 

@@ -494,9 +494,10 @@ export default function App() {
                           <div>
                             <h3 className="font-press-start text-[10px] m-0 text-[#000080]">{currentActiveProject.name}</h3>
                             <span className="text-[9px] text-gray-500">
-                              {currentActiveProject.difficulty === 'beginner' && 'Featured'}
-                              {currentActiveProject.difficulty === 'intermediate' && 'Portfolio Feature'}
-                              {currentActiveProject.difficulty === 'advanced' && 'Coming Soon'}
+                              {currentActiveProject.category === 'featured' && 'Featured'}
+                              {currentActiveProject.category === 'portfolio' && 'Portfolio Feature'}
+                              {currentActiveProject.category === 'coming-soon' && 'Coming Soon'}
+                              {currentActiveProject.category === 'hmi' && 'HMI Automation'}
                             </span>
                           </div>
                         </div>
@@ -541,7 +542,7 @@ export default function App() {
                           <div className="border border-gray-300 p-3 bg-gray-50 rounded">
                             <span className="font-bold block text-gray-700 text-[9px] mb-1">STATUS</span>
                             <span className="text-[10px] text-gray-500 block">
-                              {currentActiveProject.difficulty === 'advanced' ? 'Placeholder' : 'In progress'}
+                              {currentActiveProject.category === 'coming-soon' ? 'Placeholder' : 'In progress'}
                             </span>
                           </div>
                         </div>
