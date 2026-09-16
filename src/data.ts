@@ -78,28 +78,15 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     id: 'w1',
-    role: 'Automation & Controls Intern',
+    role: 'Industrial Systems & Cybersecurity Intern',
     company: 'Agri-Neo',
     period: 'Sept. 2026 - Dec. 2026',
     location: 'Toronto, ON',
     achievements: [
-      'Supported the development, configuration, testing, and troubleshooting of PLC-based industrial automation systems for food processing and screening applications.',
-      'Worked with Allen-Bradley PLCs and Rockwell Automation software while gaining hands-on experience with industrial control system programming and operation.',
-      'Helped configure HMI applications on industrial tablets, including operator interfaces and streamlined one-touch control features.',
-      'Assisted with industrial drive configuration, commissioning activities, system integration, and cybersecurity risk assessment for control systems.'
-    ]
-  },
-  {
-    id: 'w2',
-    role: 'Web Development & E-Commerce Operations Intern',
-    company: 'ATOMS',
-    period: 'June 2026 - Aug. 2026',
-    location: 'Montreal, QC',
-    achievements: [
-      'Developed and maintained the company e-commerce website to support online sales and customer-facing product information.',
-      'Built and updated front-end components using HTML, CSS, and JavaScript to improve usability, layout, and site performance.',
-      'Supported product and inventory workflows across the website and Amazon storefront.',
-      'Integrated and maintained third-party tools related to payments, shipping, product management, and website operations.'
+      'Designed and implemented a one-click HMI login launcher to streamline secure remote access to plant PLC systems via Ewon/Talk2m.',
+      'Conducted cybersecurity analysis on industrial control systems, identifying and addressing vulnerabilities in remote access and authentication workflows.',
+      'Implemented new features on Allen-Bradley PLC systems, applying industrial programming practices to improve HMI functionality.',
+      'Collaborated with plant engineering staff to integrate tablet-based access solutions with existing PLC/HMI infrastructure.'
     ]
   },
   {
