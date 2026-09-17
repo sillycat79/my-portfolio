@@ -53,9 +53,9 @@ export const PROJECTS: Project[] = [
     id: 'h1',
     name: 'One-Click HMI Login Automation',
     category: 'hmi',
-    description: 'An internal automation tool built during my internship at Agri-Neo that replaces an 8-step manual login process for accessing a plant HMI with a single tap.',
-    stack: ['PowerShell', 'Java Access Bridge', 'Windows Credential Manager', 'TightVNC', 'Allen-Bradley PLC', 'Ewon / Talk2m'],
-    details: 'Operators previously had to work through a remote-access client, a VPN connection, and a VNC viewer by hand just to reach a PanelView HMI screen. I built a background watcher/launcher that detects connection state and automates the plumbing in between, while leaving the HMI\'s own login screen untouched. The trickiest part was reliably selecting and triggering the correct device connection without hardcoding credentials or relying on fragile screen-coordinate clicking — solved using Java Access Bridge to target the remote-access client\'s UI by its actual accessible name rather than pixel position, with credentials kept out of any script via Windows Credential Manager. Designed to be reusable across multiple machines through per-device configuration rather than one-off scripts per bay.'
+    description: 'A cybersecurity risk assessment and automation tool built during my internship at Agri-Neo that replaces an 8-step manual login process for accessing a plant HMI with a single tap.',
+    stack: ['PowerShell', 'Java Access Bridge', 'Windows Credential Manager', 'TightVNC', 'Allen-Bradley PLC', 'PanelView HMI', 'Ewon / Talk2m'],
+    details: 'Started with an end-to-end cybersecurity risk assessment of the plant\'s industrial control systems — Allen-Bradley PLCs, PanelView HMIs, and Ewon Talk2m — covering asset identification, vulnerability analysis, and remediation planning, along with assessment and authorization documentation defining testing boundaries and safety requirements. From there I built the automation: operators previously had to work through eCatcher, a VPN connection, and a VNC viewer by hand just to reach a PanelView HMI screen. eCatcher is a Java/Swing application invisible to standard Windows UI Automation, so I engineered a Java Access Bridge (JAB) layer to drive it directly and reliably trigger one-click device connections, with credentials kept out of any script via Windows Credential Manager. That feeds into a PowerShell-based launcher with connection-monitoring and recovery logic, which also resolves 32-bit/64-bit interop constraints, to automate the full eCatcher-to-TightVNC remote HMI workflow.'
   },
   {
     id: 'a1',
@@ -91,10 +91,10 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     period: 'Sept. 2026 - Dec. 2026',
     location: 'Toronto, ON',
     achievements: [
-      'Designed and implemented a one-click HMI login launcher to streamline secure remote access to plant PLC systems via Ewon/Talk2m.',
-      'Conducted cybersecurity analysis on industrial control systems, identifying and addressing vulnerabilities in remote access and authentication workflows.',
-      'Implemented new features on Allen-Bradley PLC systems, applying industrial programming practices to improve HMI functionality.',
-      'Collaborated with plant engineering staff to integrate tablet-based access solutions with existing PLC/HMI infrastructure.'
+      'Conducted an end-to-end cybersecurity risk assessment of industrial control systems — including Allen-Bradley PLCs, PanelView HMIs, and Ewon Talk2m — covering asset identification, vulnerability analysis, and remediation planning.',
+      'Authored assessment and authorization documentation defining testing boundaries, safety requirements, and reporting protocols for company and customer equipment.',
+      'Engineered a Java Access Bridge (JAB) automation layer to drive Ewon eCatcher, a Java/Swing application invisible to standard Windows UI Automation, enabling reliable one-click device connections.',
+      'Built a PowerShell-based launcher with connection-monitoring and recovery logic, resolving 32-bit/64-bit interop constraints to automate the Ewon eCatcher and TightVNC remote HMI workflow.'
     ]
   },
   {
