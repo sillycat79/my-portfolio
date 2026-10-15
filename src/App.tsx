@@ -367,6 +367,19 @@ export default function App() {
                 </span>
               </button>
 
+              {/* Shortcut: GitHub */}
+              <button
+                id="sh-github"
+                onDoubleClick={() => window.open('https://github.com/sillycat79', '_blank', 'noopener,noreferrer')}
+                onClick={() => handleDoubleTap('github', () => window.open('https://github.com/sillycat79', '_blank', 'noopener,noreferrer'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">🐙</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  GitHub.lnk
+                </span>
+              </button>
+
               {/* Shortcut: ReadMe File */}
               <button
                 id="sh-readme"

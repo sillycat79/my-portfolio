@@ -346,17 +346,6 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                 <span className="font-extrabold text-center text-[10px] md:text-xs">CatFlap.exe</span>
                 <span className="text-[9px] text-red-500 font-bold uppercase">APP</span>
               </button>
-
-              <button
-                id="root-github"
-                onClick={() => handleDoubleTap('github', () => window.open('https://github.com/sillycat79', '_blank', 'noopener,noreferrer'))}
-                onDoubleClick={() => window.open('https://github.com/sillycat79', '_blank', 'noopener,noreferrer')}
-                className="flex flex-col items-center gap-2 p-3 bg-white border-2 border-black shadow-[4px_4px_0_0_#000000] hover:bg-[#fff200] hover:scale-[1.02] focus:bg-[#fff200] transition-all rounded-none group cursor-pointer text-black"
-              >
-                <div className="text-4xl filter drop-shadow group-hover:scale-110 transition-transform">🐙</div>
-                <span className="font-extrabold text-center text-[10px] md:text-xs">GitHub.lnk</span>
-                <span className="text-[9px] text-sky-500 font-bold uppercase">Link</span>
-              </button>
             </div>
           )}
 
