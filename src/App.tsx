@@ -380,6 +380,32 @@ export default function App() {
                 </span>
               </button>
 
+              {/* Shortcut: LinkedIn */}
+              <button
+                id="sh-linkedin"
+                onDoubleClick={() => window.open('https://linkedin.com/in/rebdagher', '_blank', 'noopener,noreferrer')}
+                onClick={() => handleDoubleTap('linkedin', () => window.open('https://linkedin.com/in/rebdagher', '_blank', 'noopener,noreferrer'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">💼</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  LinkedIn.lnk
+                </span>
+              </button>
+
+              {/* Shortcut: Resume */}
+              <button
+                id="sh-resume"
+                onDoubleClick={() => window.open('/resume.pdf', '_blank', 'noopener,noreferrer')}
+                onClick={() => handleDoubleTap('resume', () => window.open('/resume.pdf', '_blank', 'noopener,noreferrer'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">📄</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  Resume.pdf
+                </span>
+              </button>
+
               {/* Shortcut: ReadMe File */}
               <button
                 id="sh-readme"
@@ -538,6 +564,31 @@ export default function App() {
                               {currentActiveProject.details}
                             </div>
                           </div>
+
+                          {(currentActiveProject.liveUrl || currentActiveProject.repoUrl) && (
+                            <div className="flex flex-wrap gap-2">
+                              {currentActiveProject.liveUrl && (
+                                <a
+                                  href={currentActiveProject.liveUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="retro-button px-2 py-1.5 text-[10px] font-bold text-[#000080] inline-flex items-center gap-1"
+                                >
+                                  🔗 Live Demo
+                                </a>
+                              )}
+                              {currentActiveProject.repoUrl && (
+                                <a
+                                  href={currentActiveProject.repoUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="retro-button px-2 py-1.5 text-[10px] font-bold text-[#000080] inline-flex items-center gap-1"
+                                >
+                                  🐙 Repo
+                                </a>
+                              )}
+                            </div>
+                          )}
                         </div>
 
                         <div className="flex flex-col gap-3">

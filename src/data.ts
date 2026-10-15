@@ -26,6 +26,16 @@ export const PROJECTS: Project[] = [
     details: 'Includes draggable windows, desktop shortcuts, a taskbar, a start menu, nested folder navigation, responsive window behavior, and custom retro styling. This is the main project I am actively building and refining.'
   },
   {
+    id: 'b2',
+    name: 'LeetTrack',
+    category: 'featured',
+    description: 'My LeetCode / OA practice tracker — logs every problem I solve and tells me which topics I am weakest at.',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'SQLite'],
+    details: 'Tracks topic, difficulty, time, and result for every problem I log, then scores each topic 0-100 by combining fail rate and average time (adjusted for difficulty) so I know exactly where to focus next. Also tracks a daily practice streak and a 16-week activity heatmap. The weakness-score logic lives in a small Express API backed by SQLite, tested with node:test.',
+    liveUrl: 'https://leettrack-k8v3.onrender.com/',
+    repoUrl: 'https://github.com/sillycat79/leettrack'
+  },
+  {
     id: 'i1',
     name: 'Paint 95 Tool',
     category: 'portfolio',
@@ -53,9 +63,9 @@ export const PROJECTS: Project[] = [
     id: 'h1',
     name: 'One-Click HMI Login Automation',
     category: 'hmi',
-    description: 'A cybersecurity risk assessment and automation tool built during my internship at Agri-Neo that replaces an 8-step manual login process for accessing a plant HMI with a single tap.',
+    description: 'An automation tool built during my internship at Agri-Neo that cuts remote HMI access time from ~5 minutes to ~10 seconds, replacing an 8-step manual login process with a single tap.',
     stack: ['PowerShell', 'Java Access Bridge', 'Windows Credential Manager', 'TightVNC', 'Allen-Bradley PLC', 'PanelView HMI', 'Ewon / Talk2m'],
-    details: 'Started with an end-to-end cybersecurity risk assessment of the plant\'s industrial control systems — Allen-Bradley PLCs, PanelView HMIs, and Ewon Talk2m — covering asset identification, vulnerability analysis, and remediation planning, along with assessment and authorization documentation defining testing boundaries and safety requirements. From there I built the automation: operators previously had to work through eCatcher, a VPN connection, and a VNC viewer by hand just to reach a PanelView HMI screen. eCatcher is a Java/Swing application invisible to standard Windows UI Automation, so I engineered a Java Access Bridge (JAB) layer to drive it directly and reliably trigger one-click device connections, with credentials kept out of any script via Windows Credential Manager. That feeds into a PowerShell-based launcher with connection-monitoring and recovery logic, which also resolves 32-bit/64-bit interop constraints, to automate the full eCatcher-to-TightVNC remote HMI workflow.'
+    details: 'Started with a cybersecurity risk assessment across 30+ IT/OT assets — Allen-Bradley PLCs, PanelView HMIs, Ewon gateways, engineering workstations, and remote-access systems — covering asset identification, vulnerability analysis, and remediation planning, along with assessment and authorization documentation defining testing boundaries and safety requirements. From there I built the automation: operators previously had to work through eCatcher, a VPN connection, and a VNC viewer by hand just to reach a PanelView HMI screen. eCatcher is a Java/Swing application invisible to standard Windows UI Automation, so I engineered a Java Access Bridge (JAB) layer to drive it directly and reliably trigger one-click device connections, with credentials kept out of any script via Windows Credential Manager. That feeds into a PowerShell-based launcher with connection-monitoring and recovery logic, which also resolves 32-bit/64-bit interop constraints, to automate the full eCatcher-to-TightVNC remote HMI workflow. Now rolled out to the team and used daily for remote HMI access.'
   },
   {
     id: 'a1',
@@ -86,15 +96,16 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     id: 'w1',
-    role: 'Industrial Systems & Cybersecurity Intern',
+    role: 'Software Engineering Intern',
     company: 'Agri-Neo',
     period: 'Sept. 2026 - Dec. 2026',
     location: 'Toronto, ON',
     achievements: [
-      'Conducted an end-to-end cybersecurity risk assessment of industrial control systems — including Allen-Bradley PLCs, PanelView HMIs, and Ewon Talk2m — covering asset identification, vulnerability analysis, and remediation planning.',
-      'Authored assessment and authorization documentation defining testing boundaries, safety requirements, and reporting protocols for company and customer equipment.',
-      'Engineered a Java Access Bridge (JAB) automation layer to drive Ewon eCatcher, a Java/Swing application invisible to standard Windows UI Automation, enabling reliable one-click device connections.',
-      'Built a PowerShell-based launcher with connection-monitoring and recovery logic, resolving 32-bit/64-bit interop constraints to automate the Ewon eCatcher and TightVNC remote HMI workflow.'
+      'Cut remote HMI access time from ~5 minutes to ~10 seconds by automating an 8-step workflow (Ewon eCatcher + TightVNC) into a one-click launcher using Java Access Bridge and PowerShell.',
+      'Rolled out the launcher to the team, where it is now used daily for remote HMI access.',
+      'Drove Ewon eCatcher, a Java/Swing app invisible to standard Windows UI Automation, by writing a Java Access Bridge layer that controls it programmatically.',
+      'Fixed 32-bit/64-bit interoperability failures and added connection monitoring and recovery logic so automated remote sessions stay reliable.',
+      'Assessed cybersecurity risk across 30+ IT/OT assets, from Allen-Bradley PLCs and PanelView HMIs to Ewon gateways, engineering workstations, and remote-access systems.'
     ]
   },
   {
@@ -104,8 +115,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     period: 'Oct. 2023 - Feb. 2024',
     location: 'Montreal, QC',
     achievements: [
-      'Supported laboratory operations by assisting with equipment maintenance, organization, and data collection tasks.',
-      'Helped maintain a clean and reliable lab environment for students, faculty, and technical staff.'
+      'Set up laboratory equipment, supported experimental data collection, and kept technical records organized.'
     ]
   },
   {
@@ -124,9 +134,9 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const EDUCATION: Education[] = [
   {
     id: 'e1',
-    degree: 'Bachelor of Software Engineering (BEng) - Co-operative Education',
+    degree: 'Bachelor of Engineering, Software Engineering (Co-op)',
     school: 'Concordia University',
-    period: '2024 - Expected 2029',
+    period: '2025 - Expected 2028',
     achievements: [
       'Pursuing a software engineering degree with a focus on programming, systems design, and engineering fundamentals.',
       'Completing the co-op program through technical internships in web development, e-commerce operations, and industrial automation.',

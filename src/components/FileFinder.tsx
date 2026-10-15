@@ -473,6 +473,31 @@ export default function FileFinder({ onOpenProjectDetails, onOpenPaint, onOpenMu
                         </p>
                       </div>
 
+                      {(selectedProject.liveUrl || selectedProject.repoUrl) && (
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.liveUrl && (
+                            <a
+                              href={selectedProject.liveUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="retro-button px-2 py-1 text-[10px] font-bold text-[#000080] inline-flex items-center gap-1"
+                            >
+                              🔗 Live Demo
+                            </a>
+                          )}
+                          {selectedProject.repoUrl && (
+                            <a
+                              href={selectedProject.repoUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="retro-button px-2 py-1 text-[10px] font-bold text-[#000080] inline-flex items-center gap-1"
+                            >
+                              🐙 Repo
+                            </a>
+                          )}
+                        </div>
+                      )}
+
                       {selectedProject.codeSnippet && (
                         <div>
                           <span className="font-bold block text-gray-700 mb-1">💻 SOURCE PATTERN:</span>

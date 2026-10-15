@@ -6,6 +6,8 @@ export interface Project {
   stack: string[];
   details: string;
   codeSnippet?: string;
+  liveUrl?: string;
+  repoUrl?: string;
 }
 
 export interface WorkExperience {
