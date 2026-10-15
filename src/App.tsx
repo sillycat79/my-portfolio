@@ -328,45 +328,6 @@ export default function App() {
                 </span>
               </button>
 
-              {/* Shortcut: Paint */}
-              <button
-                id="sh-paint"
-                onDoubleClick={() => handleOpenWindow('paint')}
-                onClick={() => handleDoubleTap('paint', () => handleOpenWindow('paint'))}
-                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
-              >
-                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">🎨</div>
-                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
-                  Paint 95 Tool
-                </span>
-              </button>
-
-              {/* Shortcut: Music */}
-              <button
-                id="sh-music"
-                onDoubleClick={() => handleOpenWindow('music')}
-                onClick={() => handleDoubleTap('music', () => handleOpenWindow('music'))}
-                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
-              >
-                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">📻</div>
-                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
-                  8-Bit Synth
-                </span>
-              </button>
-
-              {/* Shortcut: Cat Flap */}
-              <button
-                id="sh-cat-flap"
-                onDoubleClick={() => handleOpenWindow('cat_flap')}
-                onClick={() => handleDoubleTap('cat_flap', () => handleOpenWindow('cat_flap'))}
-                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
-              >
-                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">🐱</div>
-                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
-                  Cat Flap
-                </span>
-              </button>
-
               {/* Shortcut: GitHub */}
               <button
                 id="sh-github"
@@ -416,6 +377,45 @@ export default function App() {
                 <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">📝</div>
                 <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
                   ReadMe.txt
+                </span>
+              </button>
+
+              {/* Shortcut: Paint */}
+              <button
+                id="sh-paint"
+                onDoubleClick={() => handleOpenWindow('paint')}
+                onClick={() => handleDoubleTap('paint', () => handleOpenWindow('paint'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">🎨</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  Paint 95 Tool
+                </span>
+              </button>
+
+              {/* Shortcut: Music */}
+              <button
+                id="sh-music"
+                onDoubleClick={() => handleOpenWindow('music')}
+                onClick={() => handleDoubleTap('music', () => handleOpenWindow('music'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">📻</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  8-Bit Synth
+                </span>
+              </button>
+
+              {/* Shortcut: Cat Flap */}
+              <button
+                id="sh-cat-flap"
+                onDoubleClick={() => handleOpenWindow('cat_flap')}
+                onClick={() => handleDoubleTap('cat_flap', () => handleOpenWindow('cat_flap'))}
+                className="w-[78px] flex flex-col items-center gap-1 text-center group cursor-pointer focus:outline-none"
+              >
+                <div className="text-4xl filter drop-shadow group-hover:scale-105 transition-transform">🐱</div>
+                <span className="text-[10px] text-white font-bold leading-tight font-mono tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] px-1 truncate w-full group-focus:bg-[#000080] group-focus:text-white rounded-sm">
+                  Cat Flap
                 </span>
               </button>
             </div>
